@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\CycletimeController;
 use App\Http\Controllers\HeadcountController;
@@ -54,3 +55,10 @@ Route::get('/planning/edit/{id}', [PlanningController::class, 'planningEdit']);
 Route::put('/planning/edit/{id}', [PlanningController::class, 'planningUpdate']);
 Route::delete('/planning/removed/{id}', [PlanningController::class, 'planningRemoved']);
 
+//Key performance indicator routes for overtime
+Route::get('/overtime', [OvertimeController::class, 'overtimeIndex']);
+Route::post('/overtime', [OvertimeController::class, 'overtimeStore']);
+Route::get('/overtime/{id}', [OvertimeController::class, 'overtimeShow']);
+Route::get('/overtime/edit/{id}', [OvertimeController::class, 'overtimeEdit']);
+Route::put('/overtime/edit/{id}', [OvertimeController::class, 'overtimeUpdate']);
+Route::delete('/overtime/removed/{id}', [OvertimeController::class, 'overtimeRemoved']);

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cycletime;
 use Illuminate\Http\Request;
 use App\Http\Requests\CycletimeRequest;
-use App\Http\Resources\CycletimeResource;
 
 class CycletimeController extends Controller
 {
@@ -15,7 +14,7 @@ class CycletimeController extends Controller
         if($data->count() > 0){
             return response()->json([
                 'status' => 200,
-                'info' => new CycletimeResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -44,7 +43,7 @@ class CycletimeController extends Controller
         if($info){
             return response()->json([
                 'status' => 200,
-                'info' => new CycletimeResource($info),
+                'info' => $info,
             ],200);
         } else {
             return response()->json([
@@ -63,7 +62,7 @@ class CycletimeController extends Controller
         if($data){
             return response()->json([
                 'status' => 200,
-                'info' => new CycletimeResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -82,7 +81,7 @@ class CycletimeController extends Controller
         if($data){
             return response()->json([
                 'status' => 200,
-                'info' => new CycletimeResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -112,7 +111,7 @@ class CycletimeController extends Controller
             ]);
             return response()->json([
                 'status' => 200,
-                'info' => new CycletimeResource($info),
+                'info' => $info,
             ],200);
         } else {
             return response()->json([

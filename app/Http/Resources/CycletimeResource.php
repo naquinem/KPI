@@ -15,7 +15,7 @@ class CycletimeResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            //'id' => $this->id,
             'workweek' => $this->workweek,
             'cycletime_monday' => $this->cycletime_monday,
             'cycletime_tuesday' => $this->cycletime_tuesday,

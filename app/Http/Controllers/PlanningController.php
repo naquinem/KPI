@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Planning;
 use Illuminate\Http\Request;
 use App\Http\Requests\PlanningRequest;
-use App\Http\Resources\PlanningResource;
 
 class PlanningController extends Controller
 {
@@ -15,7 +14,7 @@ class PlanningController extends Controller
         if($data->count() > 0){
             return response()->json([
                 'status' => 200,
-                'info' => new PlanningResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -51,7 +50,7 @@ class PlanningController extends Controller
         if($info){
             return response()->json([
                 'status' => 200,
-                'info' => new PlanningResource($info),
+                'info' => $info,
             ],200);
         } else {
             return response()->json([
@@ -70,7 +69,7 @@ class PlanningController extends Controller
         if($data){
             return response()->json([
                 'status' => 200,
-                'info' => new PlanningResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -89,7 +88,7 @@ class PlanningController extends Controller
         if($data){
             return response()->json([
                 'status' => 200,
-                'info' => new PlanningResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -126,7 +125,7 @@ class PlanningController extends Controller
             ]);
             return response()->json([
                 'status' => 200,
-                'info' => new PlanningResource($info),
+                'info' => $info,
             ],200);
         } else {
             return response()->json([

@@ -11,7 +11,7 @@ class CycletimeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class CycletimeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'workweek' => 'required|integer|max:214748',
+            'cycletime_monday' => 'required|string|max:255',
+            'cycletime_tuesday' => 'required|string|max:255',
+            'cycletime_wednesday' => 'required|string|max:255',
+            'cycletime_thursday' => 'required|string|max:255',
+            'cycletime_friday' => 'required|string|max:255',
+            'cycletime_saturday' => 'required|string|max:255',
+            'cycletime_sunday' => 'required|string|max:255',
         ];
     }
 }

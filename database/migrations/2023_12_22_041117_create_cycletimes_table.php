@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('cycletimes', function (Blueprint $table) {
             $table->id();
             $table->integer('workweek');
-            $table->decimal('cycletime_monday', 5, 3);
-            $table->decimal('cycletime_tuesday', 5, 3);
-            $table->decimal('cycletime_wednesday', 5, 3);
-            $table->decimal('cycletime_thursday', 5, 3);
-            $table->decimal('cycletime_friday', 5, 3);
-            $table->decimal('cycletime_saturday', 5, 3);
-            $table->decimal('cycletime_sunday', 5, 3);
+            $table->string('cycletime_monday');
+            $table->string('cycletime_tuesday');
+            $table->string('cycletime_wednesday');
+            $table->string('cycletime_thursday');
+            $table->string('cycletime_friday');
+            $table->string('cycletime_saturday');
+            $table->string('cycletime_sunday');
             $table->timestamps();
         });
     }

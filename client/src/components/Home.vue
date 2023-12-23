@@ -1,43 +1,34 @@
 <script>
-
-import csrfToken from '@/csrf/csrfToken';
-import axiosClient from '@/axios/axios';
-
-
-export default{
-  name: 'Home',
-  data() {
-    return {
-      first_name: '',
-      last_name: '',
-      contact_number: '',
-      age: '',
-      birth_date: '',
-      address: ''
-    }
-  },
-  methods: {
-    async getData () {
-      await csrfToken();
-      try{
-        const response = await axiosClient.get('/crud');
-        if(response) {
-          console.log(response);
+    export default{
+    name: 'Home',
+    data() {
+        return {
         }
-      }
-      catch (error) {
-        console.log(error);
-      }
+    },
+    methods: {
     }
-  }
-}
+    }
 </script>
 
 <template>
   <main>
-    <button @click.prevent="getData" type="submit">Submit</button>
-    <lu @change.prevent="getData">
-      <li></li>
-    </lu>
+    <div class="container">
+        <h1>Key Performance Indicator Summary</h1>
+    </div>
   </main>
 </template>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+</style>

@@ -80,13 +80,13 @@
                     </thead>
                     <tbody>
                         <tr v-for="(average, index) in getAverageCycletime" :key="index">
-                            <td>{{ average.monday }}</td>
-                            <td>{{ average.tuesday }}</td>
-                            <td>{{ average.wednesday }}</td>
-                            <td>{{ average.thursday }}</td>
-                            <td>{{ average.friday }}</td>
-                            <td>{{ average.saturday }}</td>
-                            <td>{{ average.sunday }}</td>
+                            <td>{{ average.monday.toFixed(2) }}</td>
+                            <td>{{ average.tuesday.toFixed(2) }}</td>
+                            <td>{{ average.wednesday.toFixed(2) }}</td>
+                            <td>{{ average.thursday.toFixed(2) }}</td>
+                            <td>{{ average.friday.toFixed(2) }}</td>
+                            <td>{{ average.saturday.toFixed(2) }}</td>
+                            <td>{{ average.sunday.toFixed(2) }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -102,11 +102,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(average, key) in cycletimeIncrement" :key="key">
-                            <td>{{ average.totalCycletime }}</td>
-                            <td>4324</td>
-                            <td>23432</td>
-                            <td>32423</td>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
@@ -127,6 +127,7 @@ import csrfToken from '@/csrf/csrfToken';
             return {
                 getCycletimeData: [],
                 getPlanningData: [],
+
             }
         },
         async mounted() {
@@ -157,36 +158,20 @@ import csrfToken from '@/csrf/csrfToken';
         },
         computed: {
             getAverageCycletime() {
-                return this.getCycletimeData.map((cycletime, index) => {
-                    const planning = this.getPlanningData[index];
+                return this.getCycletimeData.map((cycletimeData, index) => {
+                    const planningRequest = this.getPlanningData[index];
                     return {
-                    monday: (cycletime.cycletime_monday / planning.output_monday).toFixed(2),
-                    tuesday: (cycletime.cycletime_tuesday / planning.output_tuesday).toFixed(2),
-                    wednesday: (cycletime.cycletime_wednesday / planning.output_wednesday).toFixed(2),
-                    thursday: (cycletime.cycletime_thursday / planning.output_thursday).toFixed(2),
-                    friday: (cycletime.cycletime_friday / planning.output_friday).toFixed(2),
-                    saturday: (cycletime.cycletime_saturday / planning.output_saturday).toFixed(2),
-                    sunday: (cycletime.cycletime_sunday / planning.output_sunday).toFixed(2),
+                        monday: (cycletimeData.cycletime_monday / planningRequest.output_monday),
+                        tuesday: (cycletimeData.cycletime_tuesday / planningRequest.output_tuesday),
+                        wednesday: (cycletimeData.cycletime_wednesday / planningRequest.output_wednesday),
+                        thursday: (cycletimeData.cycletime_thursday / planningRequest.output_thursday),
+                        friday: (cycletimeData.cycletime_friday / planningRequest.output_friday),
+                        saturday: (cycletimeData.cycletime_saturday / planningRequest.output_saturday),
+                        sunday: (cycletimeData.cycletime_sunday / planningRequest.output_sunday),
                     };
                 });
             },
-            cycletimeIncrement() {
-                return this.getCycletimeData.map((cycletime) => {
-                    // Convert the cycletime values to integers
-                    const monday = parseInt(cycletime.cycletime_monday);
-                    const tuesday = parseInt(cycletime.cycletime_tuesday);
-                    const wednesday = parseInt(cycletime.cycletime_wednesday);
-                    const thursday = parseInt(cycletime.cycletime_thursday);
-                    const friday = parseInt(cycletime.cycletime_friday);
 
-                    // Calculate the total cycletime for Monday to Friday
-                    const totalCycletime = monday + tuesday + wednesday + thursday + friday;
-
-                    return {
-                    totalCycletime,
-                    };
-                });
-            },
         },
     }
 </script>

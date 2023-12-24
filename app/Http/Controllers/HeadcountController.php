@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Headcount;
 use Illuminate\Http\Request;
 use App\Http\Requests\HeadcountRequest;
-use App\Http\Resources\HeadcountResource;
 
 class HeadcountController extends Controller
 {
@@ -18,7 +17,7 @@ class HeadcountController extends Controller
         if($data->count() > 0){
             return response()->json([
                 'status' => 200,
-                'info' => new HeadcountResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -40,7 +39,7 @@ class HeadcountController extends Controller
         if($info){
             return response()->json([
                 'status' => 200,
-                'info' => new HeadcountResource($info),
+                'info' => $info,
             ],200);
         } else {
             return response()->json([
@@ -59,7 +58,7 @@ class HeadcountController extends Controller
         if($data){
             return response()->json([
                 'status' => 200,
-                'info' => new HeadcountResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -78,7 +77,7 @@ class HeadcountController extends Controller
         if($data){
             return response()->json([
                 'status' => 200,
-                'info' => new HeadcountResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([
@@ -101,7 +100,7 @@ class HeadcountController extends Controller
             ]);
             return response()->json([
                 'status' => 200,
-                'info' => new HeadcountResource($info),
+                'info' => $info,
             ],200);
         } else {
             return response()->json([

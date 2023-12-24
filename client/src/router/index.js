@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import Summary from '../pages/Summary.vue';
 import Home from '../components/Home.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
@@ -8,13 +9,17 @@ import DailyHitRate from '../pages/daily_hit_rate/DailyHitRate.vue';
 import ExcessHours from '../pages/excess_hours/ExcessHours.vue';
 import PlanningRequest from '../pages/planning_request/PlanningRequest.vue';
 import RepairOutputPerHead from '../pages/repair_output/RepairOutputPerHead.vue';
-import Summary from '../pages/Summary.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+        path: '/',
+        component: Summary
+    },
+    {
+      path: '/home',
       name: 'home',
       component: Home
     },
@@ -57,11 +62,6 @@ const router = createRouter({
         path: '/repair-output',
         name: 'repair-output',
         component: RepairOutputPerHead
-    },
-    {
-        path: '/summary',
-        name: 'summary',
-        component: Summary
     },
     {
       path: '/about',

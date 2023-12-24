@@ -4,29 +4,29 @@
             <h1>Repair Output per Head(ROH)</h1>
         </div>
         <div class="info">
+
             <div class="data">
-                <h5>Work Week</h5>
-                <ul v-for="(week, id) in this.planningData" :key="id">
-                    <li>{{ week.workweek }}</li>
-                </ul>
-            </div>
-            <div class="data">
-                <h5>Total Repair Output</h5>
-                <ul v-for="(planning, key) in getTotalOutput" :key="key">
-                    <li>{{ planning.total }}</li>
-                </ul>
-            </div>
-            <div class="data">
-                <h5>Total Headcount</h5>
-                <ul v-for="(heads, index) in this.headcountData" :key="index">
-                    <li>{{ heads.total_headcounts }}</li>
-                </ul>
-            </div>
-            <div class="data">
-                <h5>Repair Output per Head</h5>
-                <ul v-for="(planning, key) in getTotalOutput" :key="key">
-                    <li v-for="(heads, index) in this.headcountData" :key="index">{{ (planning.total/heads.total_headcounts).toFixed(2) }}</li>
-                </ul>
+                <div class="data">
+                    <h5>Repair Output per Head</h5>
+                    <table>
+                    <thead>
+                        <tr>
+                        <th>Work Week</th>
+                        <th>Total Repair Output</th>
+                        <th>Total Headcount</th>
+                        <th>Repair Output per Head</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(plan, key) in getTotalOutput" :key="key">
+                        <td>{{ planningData[key].workweek }}</td>
+                        <td>{{ plan.total }}</td>
+                        <td>{{ headcountData[key].total_headcounts }}</td>
+                        <td>{{ (plan.total / headcountData[key].total_headcounts).toFixed(2) }}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -46,6 +46,7 @@ import axiosClient from '@/axios/axios';
         },
         mounted() {
             this.handleGetData();
+
         },
         methods: {
             async handleGetData() {

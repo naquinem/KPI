@@ -20,7 +20,7 @@ class AuthController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('token')->plainTextToken;
         $cookie = cookie('token', $token, 60 * 120);
         return response()->json([
             'status' => 200,
@@ -39,7 +39,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $user->createToken('token')->plainTextToken;
 
         $cookie = cookie('token', $token, 60 * 120); // 1 day
 

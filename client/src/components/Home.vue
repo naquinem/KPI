@@ -11,11 +11,11 @@
 </script>
 
 <template>
-  <main>
+  <div  class="h-full bg-gray-100">
     <div class="container">
         <h1>Key Performance Indicator Summary</h1>
     </div>
-  </main>
+</div>
 </template>
 
 <style>

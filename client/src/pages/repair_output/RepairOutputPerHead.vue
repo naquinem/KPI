@@ -7,7 +7,6 @@
 
             <div class="data">
                 <div class="data">
-                    <h5>Repair Output per Head</h5>
                     <table>
                     <thead>
                         <tr>

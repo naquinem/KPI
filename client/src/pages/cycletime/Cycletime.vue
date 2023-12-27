@@ -80,13 +80,13 @@
                     </thead>
                     <tbody>
                         <tr v-for="(average, index) in getAverageCycletime" :key="index">
-                            <td>{{ average.monday.toFixed(2) }}</td>
-                            <td>{{ average.tuesday.toFixed(2) }}</td>
-                            <td>{{ average.wednesday.toFixed(2) }}</td>
-                            <td>{{ average.thursday.toFixed(2) }}</td>
-                            <td>{{ average.friday.toFixed(2) }}</td>
-                            <td>{{ average.saturday.toFixed(2) }}</td>
-                            <td>{{ average.sunday.toFixed(2) }}</td>
+                            <td>{{ (average.monday).toFixed(2) }}</td>
+                            <td>{{ (average.tuesday).toFixed(2) }}</td>
+                            <td>{{ (average.wednesday).toFixed(2) }}</td>
+                            <td>{{( average.thursday).toFixed(2) }}</td>
+                            <td>{{ (average.friday).toFixed(2) }}</td>
+                            <td>{{ (average.saturday).toFixed(2) }}</td>
+                            <td>{{ (average.sunday).toFixed(2) }}</td>
                         </tr>
                     </tbody>
                 </table>

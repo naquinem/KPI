@@ -12,11 +12,23 @@
             </thead>
             <tbody>
                 <tr v-for="(data, key) in getPlanning" :key="key">
-                    <th>{{planningData[key].workweek}}</th>
-                    <th>{{ data.total }}</th>
-                    <th>{{ }}</th>
-                    <th></th>
+                    <td>{{planningData[key].workweek}}</td>
+                    <td>{{ data.total }}</td>
+                    <td v-for="(average, index) in getAverageCycletime" :key="index">
+                        {{ (
+                                        average.monday +
+                                        average.tuesday +
+                                        average.wednesday +
+                                        average.thursday +
+                                        average.friday +
+                                        average.saturday +
+                                        average.sunday
+                                    ).toFixed(2)
+                                }}
+                    </td>
+                    <td></td>
                 </tr>
+
             </tbody>
         </table>
     </div>
@@ -30,6 +42,7 @@ import axiosClient from '@/axios/axios';
         data() {
             return {
                 planningData: [],
+                getCycletimeData: [],
             }
         },
         mounted(){
@@ -40,6 +53,8 @@ import axiosClient from '@/axios/axios';
                 try{
                     const response = await axiosClient.get('/planning');
                     this.planningData = response.data.info;
+                    const response1 = await axiosClient.get('/cycletime');
+                    this.getCycletimeData = response1.data.info;
                 }
                 catch (error) {
                     if(error.response.status === 401) {
@@ -66,7 +81,22 @@ import axiosClient from '@/axios/axios';
                         )
                     }
                 })
-            }
+            },
+            getAverageCycletime() {
+                return this.getCycletimeData.map((cycletimeData, index) => {
+                    const planningRequest = this.planningData[index];
+                    return {
+                        monday: (cycletimeData.cycletime_monday / planningRequest.output_monday),
+                        tuesday: (cycletimeData.cycletime_tuesday / planningRequest.output_tuesday),
+                        wednesday: (cycletimeData.cycletime_wednesday / planningRequest.output_wednesday),
+                        thursday: (cycletimeData.cycletime_thursday / planningRequest.output_thursday),
+                        friday: (cycletimeData.cycletime_friday / planningRequest.output_friday),
+                        saturday: (cycletimeData.cycletime_saturday / planningRequest.output_saturday),
+                        sunday: (cycletimeData.cycletime_sunday / planningRequest.output_sunday),
+                    };
+                });
+            },
+
         }
     }
 </script>

@@ -9,7 +9,10 @@ import DailyHitRate from '../pages/daily_hit_rate/DailyHitRate.vue';
 import ExcessHours from '../pages/excess_hours/ExcessHours.vue';
 import PlanningRequest from '../pages/planning_request/PlanningRequest.vue';
 import RepairOutputPerHead from '../pages/repair_output/RepairOutputPerHead.vue';
-
+import CycletimeCreate from '../pages/cycletime/CycletimeCreate.vue';
+import PlanningCreate from '../pages/planning_request/PlanningCreate.vue';
+import OvertimeCreate from '../pages/excess_hours/OvertimeCreate.vue';
+import HeadcountCreate from '../pages/headcount/HeadcountCreate.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,7 +49,7 @@ const router = createRouter({
     {
         path: '/daily-hit-rate',
         name: 'daily-hit-rate',
-        component: DailyHitRate,
+        component: DailyHitRate
     },
     {
         path: '/excess-hours',
@@ -62,6 +65,26 @@ const router = createRouter({
         path: '/repair-output',
         name: 'repair-output',
         component: RepairOutputPerHead
+    },
+    {
+        path: '/cycletime-create',
+        name: 'cycletime-create',
+        component: CycletimeCreate
+    },
+    {
+        path: '/headcount-create',
+        name: 'headcount-create',
+        component: HeadcountCreate
+    },
+    {
+        path: '/planning-create',
+        name: 'planning-create',
+        component: PlanningCreate
+    },
+    {
+        path: '/overtime-create',
+        name: 'overtime-create',
+        component: OvertimeCreate
     },
     {
       path: '/about',

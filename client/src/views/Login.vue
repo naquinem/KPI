@@ -25,6 +25,7 @@
 import { RouterLink } from 'vue-router';
 import axiosClient from '../axios/axios';
 import csrfToken from '@/csrf/csrfToken';
+import { jsx } from 'vue/jsx-runtime';
     export default {
     name: 'Login',
     data() {
@@ -45,6 +46,7 @@ import csrfToken from '@/csrf/csrfToken';
 
                 const response = await axiosClient.post('/login', data);
                 localStorage.setItem('token', response.data.token);
+                localStorage.setItem('user', JSON.stringify(response.data.user));
                 this.$router.push('/home');
             }
             catch (error) {

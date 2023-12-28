@@ -28,27 +28,7 @@
 
 <template>
     <div  class="h-full">
-        <nav class="nav">
-            <div class="nav-content">
-                <div>
-                    <img />
-                </div>
-                <div class="nav-links">
-                    <ul>
-                        <li><RouterLink to="/cycletime-create">Cycletime</RouterLink></li>
-                        <li><RouterLink to="/headcount-create">Headcount</RouterLink></li>
-                        <li><RouterLink to="/planning-create">Planning Request</RouterLink></li>
-                        <li><RouterLink to="/overtime-create">Excess Hours</RouterLink></li>
-                    </ul>
-                </div>
-                <div class="users">
-                    <ul>
-                        <li>Welcome: </li>
-                    </ul>
-                    <button class="btn btn-danger">Logout</button>
-                </div>
-            </div>
-        </nav>
+
         <main>
             <div class="clock-container">
                 <div class="clock">

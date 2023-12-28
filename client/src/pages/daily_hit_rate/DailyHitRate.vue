@@ -1,5 +1,7 @@
 <template>
-
+    <div>
+        <h1>Daily Hit Rate</h1>
+    </div>
 </template>
 
 

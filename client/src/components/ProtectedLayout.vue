@@ -18,7 +18,7 @@
                             <p>Welcome:</p>
                             <p class="users-info">{{ this.user.name }}</p>
                         </div>
-                    <button class="btn btn-danger">Logout</button>
+                    <button @click="handleLogout()" class="btn btn-danger">Logout</button>
                 </div>
             </div>
         </nav>
@@ -27,11 +27,12 @@
 
 </template>
 <script>
+import axiosClient from '@/axios/axios';
 import { RouterView } from 'vue-router';
 export default {
     data() {
         return {
-            user: {}
+            user: {},
         }
     },
     mounted() {
@@ -52,7 +53,15 @@ export default {
             if(!this.user) {
                 this.$router.push('/')
             }
+        },
+        handleLogout(){
+            window.alert('Successfully logout');
+            setTimeout(() => {
+                localStorage.removeItem('user');
+                this.$router.push('/');
+            }, 2000);
         }
+
 
     }
 }

@@ -36,6 +36,7 @@ export default {
     },
     mounted() {
         this.getUser();
+        this.getAuth();
     },
     methods: {
         getUser() {
@@ -46,7 +47,11 @@ export default {
             catch (error) {
                 console.log(error)
             }
-
+        },
+        getAuth() {
+            if(!this.user) {
+                this.$router.push('/')
+            }
         }
 
     }

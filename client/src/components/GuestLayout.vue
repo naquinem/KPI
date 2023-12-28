@@ -1,5 +1,34 @@
-<script setup>
+<script>
 import { RouterView } from 'vue-router';
+
+export default {
+    data() {
+        return {
+            user: {}
+        }
+    },
+    mounted() {
+        this.getUser();
+        this.getAuth();
+    },
+    methods: {
+        getUser() {
+            try {
+                const userName = JSON.parse(localStorage.getItem('user'));
+                this.user = userName;
+            }
+            catch (error) {
+                console.log(error)
+            }
+        },
+        getAuth() {
+            if(this.user) {
+                this.$router.push('/home')
+            }
+        }
+
+    }
+}
 </script>
 <template>
     <div>

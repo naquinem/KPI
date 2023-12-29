@@ -14,7 +14,7 @@ export default {
     methods: {
         getUser() {
             try {
-                const userName = JSON.parse(localStorage.getItem('user'));
+                const userName = JSON.parse(sessionStorage.getItem('user'));
                 this.user = userName;
             }
             catch (error) {

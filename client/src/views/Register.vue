@@ -41,6 +41,7 @@
                     password_confirmation: this.cpassword,
                 };
                 const response = await axiosClient.post('/register', data);
+                console.log(response);
                 return this.$router.push('/login');
             }
             catch (error) {

@@ -104,10 +104,13 @@
 
             </div>
             <aside class="a-side">
+                <h5>Authentication</h5>
+                <p class="auth-content">If you don't have an account yet, kindly register your account below</p>
                 <ul class="nav d-flex flex-column">
-                    <li class="pt-4"><RouterLink to="/login" class="btn btn-primary">Login</RouterLink></li>
+                    <li class="pt-1"><RouterLink to="/login" class="btn btn-primary">Login</RouterLink></li>
                     <li class="pt-4"><RouterLink to="/register" class="btn btn-primary">Register</RouterLink></li>
                 </ul>
+
             </aside>
 
         </div>
@@ -129,6 +132,10 @@
     h1{
         color: #20283e;
     }
+    h5{
+        padding-top: 4rem;
+        color: #20283e
+    }
     a{
         width: 5rem;
         height: 2rem;
@@ -140,6 +147,16 @@
     }
     p {
         font-size: 16px;
+    }
+    .auth-content{
+        width: 11rem;
+        align-items: center;
+        margin-left: 3rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: small;
+        text-align: justify;
+        font-family: sans-serif,Arial, Helvetica
     }
     .parent-container{
         display: flex;

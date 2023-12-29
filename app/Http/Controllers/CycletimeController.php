@@ -47,9 +47,9 @@ class CycletimeController extends Controller
             ],200);
         } else {
             return response()->json([
-                'status' => 404,
+                'status' => 401,
                 'error' => 'Error in sending data to database',
-            ], 404);
+            ], 401);
         }
     }
 

@@ -2,8 +2,8 @@
     <div>
         <nav class="nav">
             <div class="nav-content">
-                <div>
-                    <img />
+                <div class="home">
+                    <RouterLink to="/home">HOME</RouterLink>
                 </div>
                 <div class="nav-links">
                     <ul>
@@ -27,7 +27,6 @@
 
 </template>
 <script>
-import axiosClient from '@/axios/axios';
 import { RouterView } from 'vue-router';
 export default {
     data() {
@@ -42,7 +41,7 @@ export default {
     methods: {
         getUser() {
             try {
-                const userName = JSON.parse(localStorage.getItem('user'));
+                const userName = JSON.parse(sessionStorage.getItem('user'));
                 this.user = userName;
             }
             catch (error) {
@@ -57,7 +56,8 @@ export default {
         handleLogout(){
             window.alert('Successfully logout');
             setTimeout(() => {
-                localStorage.removeItem('user');
+                sessionStorage.removeItem('user');
+                sessionStorage.removeItem('token');
                 this.$router.push('/');
             }, 2000);
         }
@@ -108,6 +108,7 @@ export default {
     }
     .nav-links{
         font-size: large;
+        padding-top: 1rem;
     }
     .nav-links >ul {
         display: flex;
@@ -132,5 +133,9 @@ export default {
     }
     .users > ul {
         padding-right: 2rem;
+    }
+    .home{
+        margin-left: 4rem;
+        font-size: x-large;
     }
 </style>

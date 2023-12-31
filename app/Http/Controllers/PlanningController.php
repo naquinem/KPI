@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Planning;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PlanningRequest;
 
 class PlanningController extends Controller
@@ -47,7 +48,11 @@ class PlanningController extends Controller
             'output_saturday' => $data['output_saturday'],
             'output_sunday' => $data['output_sunday'],
         ]);
+
         if($info){
+            DB::table('planning_requests')->update(['total_request' => DB::raw('planning_monday+planning_tuesday+planning_wednesday+planning_thursday+planning_friday+planning_saturday+planning_sunday')]);
+            DB::table('planning_requests')->update(['total_output' => DB::raw('output_monday+output_tuesday+output_wednesday+output_thursday+output_friday+output_saturday+output_sunday')]);
+
             return response()->json([
                 'status' => 200,
                 'info' => $info,

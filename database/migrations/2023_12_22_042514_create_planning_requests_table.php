@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -28,8 +29,11 @@ return new class extends Migration
             $table->integer('output_friday');
             $table->integer('output_saturday');
             $table->integer('output_sunday');
+            $table->integer('total_request')->default(0);
+            $table->integer('total_output')->default(0);
             $table->timestamps();
         });
+
     }
 
     /**

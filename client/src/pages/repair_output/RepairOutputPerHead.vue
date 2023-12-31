@@ -18,10 +18,10 @@
                     </thead>
                     <tbody>
                         <tr v-for="(plan, key) in getTotalOutput" :key="key">
-                        <td>{{ planningData[key].workweek }}</td>
-                        <td>{{ plan.total }}</td>
-                        <td>{{ headcountData[key].total_headcounts }}</td>
-                        <td>{{ (plan.total / headcountData[key].total_headcounts).toFixed(2) }}</td>
+                            <td>{{ planningData[key].workweek }}</td>
+                            <td>{{ plan.total }}</td>
+                            <td>{{ headcountData[key].total_headcounts }}</td>
+                            <td>{{ (plan.total / headcountData[key].total_headcounts).toFixed(2) }}</td>
                         </tr>
                     </tbody>
                     </table>

@@ -10,8 +10,7 @@ class Overtime extends Model
     use HasFactory;
     protected $table = 'overtimes';
     protected $fillable = [
-        'workweek',
-        'total_hours',
-        'regular_hours',
+        'total_work_hours',
+        'total_regular_hours',
     ];
 }

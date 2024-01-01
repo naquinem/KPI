@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Headcount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\HeadcountRequest;
 
 class HeadcountController extends Controller
@@ -37,6 +38,17 @@ class HeadcountController extends Controller
             'total_headcounts' => $data['total_headcounts'],
         ]);
         if($info){
+            DB::table('headcounts')->update([
+                'workweek' => DB::raw(
+                    '(SELECT workweek FROM planning_requests WHERE planning_requests.id = headcounts.id)'
+                ),
+                'total_output' => DB::raw(
+                    '(SELECT total_output FROM planning_requests WHERE planning_requests.id = headcounts.id)'
+                ),
+                'repair_output_per_head' => DB::raw(
+                    'ROUND(total_output / total_headcounts, 2)'
+                ),
+            ]);
             return response()->json([
                 'status' => 200,
                 'info' => $info,

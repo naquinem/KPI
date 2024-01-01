@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('overtimes', function (Blueprint $table) {
             $table->id();
-            $table->integer('workweek');
-            $table->string('total_hours');
-            $table->string('regular_hours');
+            $table->integer('workweek')->nullable();
+            $table->string('total_regular_hours');
+            $table->string('total_work_hours');
+            $table->string('total_headcounts')->default(27);
+            $table->string('total_overtime')->nullable();
+            $table->string('average_overtime')->nullable();
             $table->timestamps();
         });
     }

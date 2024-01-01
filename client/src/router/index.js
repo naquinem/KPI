@@ -8,7 +8,7 @@ import CycletimePercentile from '../pages/cycletime_percentile/CycletimePercenti
 import DailyHitRate from '../pages/daily_hit_rate/DailyHitRate.vue';
 import ExcessHours from '../pages/excess_hours/ExcessHours.vue';
 import PlanningRequest from '../pages/planning_request/PlanningRequest.vue';
-import RepairOutputPerHead from '../pages/repair_output/RepairOutputPerHead.vue';
+import RepairOutput from '../pages/repair_output/RepairOutput.vue';
 import CycletimeCreate from '../pages/cycletime/CycletimeCreate.vue';
 import PlanningCreate from '../pages/planning_request/PlanningCreate.vue';
 import OvertimeCreate from '../pages/excess_hours/OvertimeCreate.vue';
@@ -67,7 +67,6 @@ const router = createRouter({
                 path: '/',
                 component: Summary
             },
-
             {
               path: '/login',
               name: 'login',
@@ -106,7 +105,7 @@ const router = createRouter({
             {
                 path: '/repair-output',
                 name: 'repair-output',
-                component: RepairOutputPerHead
+                component: RepairOutput
             },
         ]
     },

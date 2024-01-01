@@ -19,7 +19,7 @@ class OvertimeController extends Controller
         if($data->count() > 0){
             return response()->json([
                 'status' => 200,
-                'info' => new OvertimeResource($data),
+                'info' => $data,
             ],200);
         } else {
             return response()->json([

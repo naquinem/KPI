@@ -42,10 +42,10 @@ export default {
                     <ul>
                         <li><RouterLink to="/planning-request">Planning Request</RouterLink></li>
                         <li><RouterLink to="/cycletime">Cycletime</RouterLink></li>
-                        <li><RouterLink to="/cycletime-percentile">Cycletime Percentile</RouterLink></li>
-                        <li><RouterLink to="/repair-output">Repair Output</RouterLink></li>
-                        <li><RouterLink to="/daily-hit-rate">Daily Hit Rate</RouterLink></li>
+                        <li><RouterLink to="/repair-output">Repair Output per Head</RouterLink></li>
                         <li><RouterLink to="/excess-hours">Excess Hours</RouterLink></li>
+                        <li><RouterLink to="/cycletime-percentile">Cycletime Percentile</RouterLink></li>
+                        <li><RouterLink to="/daily-hit-rate">Daily Hit Rate</RouterLink></li>
                     </ul>
                 </div>
             </div>
@@ -75,12 +75,12 @@ export default {
     }
     .default > a {
         margin-left: 40px;
-        font-size: x-large;
+        font-size: large;
         color: #b3c100;
     }
     .default > a:hover {
         margin-left: 40px;
-        font-size: x-large;
+        font-size: large;
         color: #ced2cc;
     }
     .nav{
@@ -94,7 +94,7 @@ export default {
         display: flex;
         justify-content: left;
         align-items: center;
-        width: 60rem;
+        width: 70rem;
     }
     .nav-content {
         display: flex;

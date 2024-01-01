@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CrudController;
+use App\Http\Controllers\DailyHitController;
 use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\CycletimeController;
@@ -62,3 +63,7 @@ Route::get('/overtime/{id}', [OvertimeController::class, 'overtimeShow']);
 Route::get('/overtime/edit/{id}', [OvertimeController::class, 'overtimeEdit']);
 Route::put('/overtime/edit/{id}', [OvertimeController::class, 'overtimeUpdate']);
 Route::delete('/overtime/removed/{id}', [OvertimeController::class, 'overtimeRemoved']);
+
+
+Route::get('/daily', [DailyHitController::class, 'dailyIndex']);
+Route::post('/daily', [DailyHitController::class, 'dailyStore']);

@@ -22,9 +22,9 @@ class HeadcountController extends Controller
             ],200);
         } else {
             return response()->json([
-                'status' => 404,
-                'error' => 'No data found in database',
-            ],404);
+                'status' => 401,
+                'message' => 'No data found in database',
+            ],401);
         }
     }
 

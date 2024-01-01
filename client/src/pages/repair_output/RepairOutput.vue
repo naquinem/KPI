@@ -1,8 +1,8 @@
 <template>
-    <div class="excess-hours">
+    <div class="repair-output">
 
         <div>
-            <div class="excess-hours-title">
+            <div class="repair-output-title">
                 <h1>Repair Output per Head</h1>
                 <ul v-for="(error, key) in this.errorField" :key="key">
                     <li>{{ error }}</li>
@@ -12,23 +12,17 @@
                 <thead>
                     <tr>
                         <th>Work Week</th>
-                        <th>Regular Hours</th>
-                        <th>Total Work Hours</th>
-                        <th>Direct Heads (BRS, Assembler, and EAs)</th>
-                        <th>Total Excess Hours</th>
-                        <th>Average Excess Hours</th>
-                        <th>GOAL</th>
+                        <th>Total Output</th>
+                        <th>Total Headcount</th>
+                        <th>Repair Output per Head</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(overtime) in this.overTime" :key="overtime.id">
-                        <td>{{ overtime.workweek }}</td>
-                        <td>{{ overtime.total_regular_hours }}</td>
-                        <td>{{ overtime.total_work_hours }}</td>
-                        <td>{{ overtime.total_headcounts }}</td>
-                        <td>{{ overtime.total_overtime }}</td>
-                        <td>{{ overtime.average_overtime }}</td>
-                        <td>15%</td>
+                    <tr v-for="(repair) in this.repairOutput" :key="repairOutput.id">
+                        <td>{{ repair.workweek }}</td>
+                        <td>{{ repair.total_output }}</td>
+                        <td>{{ repair.total_headcounts }}</td>
+                        <td>{{ repair.repair_output_per_head }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -40,21 +34,21 @@ import axiosClient from '@/axios/axios';
 
 
 export default {
-    name: 'ExcessHours',
+    name: 'RepairOutput',
     data() {
         return {
-            overTime: [],
+            repairOutput: [],
             errorField: [],
         }
     },
     mounted() {
-        this.getOverTime();
+        this.getRepairOutput();
     },
     methods: {
-        async getOverTime() {
+        async getRepairOutput() {
             try{
-                const response = await axiosClient.get('/overtime');
-                this.overTime = response.data.info;
+                const response = await axiosClient.get('/headcounts');
+                this.repairOutput = response.data.info;
             }
             catch(error) {
                 if(error.response.status === 401){
@@ -76,14 +70,14 @@ export default {
         list-style-type: none;
         text-decoration: none;
     }
-    .excess-hours{
+    .repair-output{
         margin-top: 5rem;
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
     }
-    .excess-hours-title{
+    .repair-output-title{
         margin-bottom: 2rem;
     }
 </style>

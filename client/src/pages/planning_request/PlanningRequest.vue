@@ -7,9 +7,10 @@
                     <th></th>
                     <th colspan="7"><strong>Daily Planning Request</strong></th>
                     <th colspan="7"><strong>Total Shipments</strong></th>
-                    <th><strong>Request</strong></th>
-                    <th><strong>Shipped</strong></th>
-                    <th><strong>Shipped to Request</strong></th>
+                    <th rowspan="2"><strong>Request</strong></th>
+                    <th rowspan="2"><strong>Shipped</strong></th>
+                    <th rowspan="2"><strong>Shipped to Request</strong></th>
+                    <th rowspan="2"><strong>GOAL</strong></th>
                 </tr>
                 <tr>
                     <th>WW</th>
@@ -27,31 +28,31 @@
                     <th>Fri</th>
                     <th>Sat</th>
                     <th>Sun</th>
-                    <th>HDD</th>
-                    <th>HDD</th>
-                    <th>Total</th>
                 </tr>
             </thead>
+
+
             <tbody>
-                <tr v-for="(totalPlan, key) in getTotalOutput" :key="key">
-                    <th>{{ planningData[key].workweek }}</th>
-                    <th>{{ planningData[key].planning_monday }}</th>
-                    <th>{{ planningData[key].planning_tuesday }}</th>
-                    <th>{{ planningData[key].planning_wednesday }}</th>
-                    <th>{{ planningData[key].planning_thursday }}</th>
-                    <th>{{ planningData[key].planning_friday }}</th>
-                    <th>{{ planningData[key].planning_saturday }}</th>
-                    <th>{{ planningData[key].planning_sunday }}</th>
-                    <th>{{ planningData[key].output_monday }}</th>
-                    <th>{{ planningData[key].output_tuesday }}</th>
-                    <th>{{ planningData[key].output_wednesday }}</th>
-                    <th>{{ planningData[key].output_thursday }}</th>
-                    <th>{{ planningData[key].output_friday }}</th>
-                    <th>{{ planningData[key].output_saturday }}</th>
-                    <th>{{ planningData[key].output_sunday }}</th>
-                    <th>{{ totalPlan.totalPlanning }}</th>
-                    <th>{{ totalPlan.totalOutput }}</th>
-                    <th>{{ (totalPlan.totalOutput/totalPlan.totalPlanning*100).toFixed(2) }}</th>
+                <tr v-for="(planning) in this.planningData" :key="planning.id">
+                    <td>{{ planning.workweek }}</td>
+                    <td>{{ planning.planning_monday }}</td>
+                    <td>{{ planning.planning_tuesday }}</td>
+                    <td>{{ planning.planning_wednesday }}</td>
+                    <td>{{ planning.planning_thursday }}</td>
+                    <td>{{ planning.planning_friday }}</td>
+                    <td>{{ planning.planning_saturday }}</td>
+                    <td>{{ planning.planning_sunday }}</td>
+                    <td>{{ planning.output_monday }}</td>
+                    <td>{{ planning.output_tuesday }}</td>
+                    <td>{{ planning.output_wednesday }}</td>
+                    <td>{{ planning.output_thursday }}</td>
+                    <td>{{ planning.output_friday }}</td>
+                    <td>{{ planning.output_saturday }}</td>
+                    <td>{{ planning.output_sunday }}</td>
+                    <td>{{ planning.total_request }}</td>
+                    <td>{{ planning.total_output }}</td>
+                    <td>{{ (planning.total_output / planning.total_request * 100).toFixed(3) }}</td>
+                    <td>90 %</td>
                 </tr>
             </tbody>
         </table>
@@ -90,32 +91,6 @@ import axiosClient from '@/axios/axios';
 
             }
         },
-        computed: {
-            getTotalOutput() {
-                return this.planningData.map((data) => {
-                    return {
-                        totalOutput: (
-                            data.output_monday +
-                            data.output_tuesday +
-                            data.output_wednesday +
-                            data.output_thursday +
-                            data.output_friday +
-                            data.output_saturday +
-                            data.output_sunday
-                        ),
-                        totalPlanning: (
-                            data.planning_monday +
-                            data.planning_tuesday +
-                            data.planning_wednesday +
-                            data.planning_thursday +
-                            data.planning_friday +
-                            data.planning_saturday +
-                            data.planning_sunday
-                        )
-                    }
-                })
-            },
-        }
     }
 </script>
 

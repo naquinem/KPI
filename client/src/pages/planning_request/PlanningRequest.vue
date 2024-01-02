@@ -51,7 +51,7 @@
                     <td>{{ planning.output_sunday }}</td>
                     <td>{{ planning.total_request }}</td>
                     <td>{{ planning.total_output }}</td>
-                    <td>{{ (planning.total_output / planning.total_request * 100).toFixed(3) }}</td>
+                    <td>{{ (planning.total_output / planning.total_request * 100).toFixed(2) }} %</td>
                     <td>90 %</td>
                 </tr>
             </tbody>

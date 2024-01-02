@@ -6,7 +6,6 @@ use App\Models\Overtime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\OvertimeRequest;
-use App\Http\Resources\OvertimeResource;
 
 class OvertimeController extends Controller
 {
@@ -17,15 +16,15 @@ class OvertimeController extends Controller
     {
         $data = Overtime::all();
         if($data->count() > 0){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ],404);
+            ],401);
         }
     }
 
@@ -36,34 +35,32 @@ class OvertimeController extends Controller
     {
         $data = $request->validated();
         $info = Overtime::create([
+            'workweek' => $data['workweek'],
             'total_work_hours' => $data['total_work_hours'],
             'total_regular_hours' => $data['total_regular_hours'],
         ]);
         if($info){
             DB::table('overtimes')->update([
-                'workweek' => DB::raw(
-                    '(SELECT workweek FROM planning_requests WHERE planning_requests.id = overtimes.id)'
-                ),
                 'total_overtime' => DB::raw(
-                    'ROUND(total_work_hours - total_regular_hours, 2)'
+                    'total_work_hours - total_regular_hours'
                 ),
                 'total_headcounts' => DB::raw(
                     '(SELECT total_headcounts FROM headcounts WHERE headcounts.id = overtimes.id)'
                 ),
                 'average_overtime' => DB::raw(
-                    'ROUND(total_overtime / total_work_hours * 100, 2)'
+                    'total_overtime / total_work_hours'
                 ),
             ]);
 
-            return response()->json([
+            return response([
                 'status' => 200,
-                'info' => new OvertimeResource($info),
+                'info' => $info,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Error in sending data to database',
-            ], 404);
+            ], 401);
         }
     }
 
@@ -74,15 +71,15 @@ class OvertimeController extends Controller
     {
         $data = Overtime::find($id);
         if($data){
-            return response()->json([
+            return response([
                 'status' => 200,
-                'info' => new OvertimeResource($data),
+                'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ]);
+            ], 401);
         }
     }
 
@@ -93,15 +90,15 @@ class OvertimeController extends Controller
     {
         $data = Overtime::find($id);
         if($data){
-            return response()->json([
+            return response([
                 'status' => 200,
-                'info' => new OvertimeResource($data),
+                'info' => $data,
             ],200);
         } else {
-            return response()->json([
+            return response([
                 'status' => 404,
                 'error' => 'No data found in database',
-            ]);
+            ], 401);
         }
     }
 
@@ -118,15 +115,15 @@ class OvertimeController extends Controller
                 'total_hours' => $data['total_hours'],
                 'regular_hours' => $data['regular_hours'],
             ]);
-            return response()->json([
+            return response([
                 'status' => 200,
-                'info' => new OvertimeResource($info),
+                'info' => $info,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Error in sending data to database'
-            ], 404);
+            ], 401);
         }
     }
 
@@ -138,15 +135,15 @@ class OvertimeController extends Controller
         $data = Overtime::find($id);
         if($data) {
             $data->delete();
-            return response()->json([
+            return response([
                 'status' => 200,
                 'message' => 'Successfully removed the data from database',
-            ]);
+            ], 200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Unsuccessfully delete in database',
-            ]);
+            ], 401);
         }
     }
 }

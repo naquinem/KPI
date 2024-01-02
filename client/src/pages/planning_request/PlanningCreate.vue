@@ -115,7 +115,8 @@ export default {
                 }
                 const response = await axiosClient.post('/planning', data);
                 if(response.status === 200) {
-                    this.$router.push('/headcount-create');
+                    window.alert('Successfully send data');
+                    this.$router.push('/cycletime-create');
                 }
             }
             catch(error) {

@@ -27,8 +27,8 @@
                         <td>{{ overtime.total_work_hours }}</td>
                         <td>{{ overtime.total_headcounts }}</td>
                         <td>{{ overtime.total_overtime }}</td>
-                        <td>{{ overtime.average_overtime }}</td>
-                        <td>15%</td>
+                        <td>{{ overtime.average_overtime }} %</td>
+                        <td>15 %</td>
                     </tr>
                 </tbody>
             </table>

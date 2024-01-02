@@ -65,8 +65,8 @@
                             <td>{{ cycletime.average_sunday }}</td>
                             <td>{{ cycletime.total_cycletime }}</td>
                             <td>{{ cycletime.total_output }}</td>
-                            <td>{{ (cycletime.total_cycletime / cycletime.total_output).toFixed(3) }}</td>
-                            <td>4</td>
+                            <td>{{ (cycletime.total_cycletime / cycletime.total_output).toFixed(2) }}</td>
+                            <td>3.5</td>
                         </tr>
                     </tbody>
                 </table>

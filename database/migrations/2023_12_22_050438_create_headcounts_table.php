@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('headcounts', function (Blueprint $table) {
             $table->id();
-            $table->integer('workweek')->nullable();
+            $table->integer('workweek')->default(0);
             $table->string('total_output')->default(0);
             $table->string('total_headcounts');
-            $table->string('repair_output_per_head')->nullable();
+            $table->string('repair_output_per_head')->default(0);
             $table->timestamps();
         });
     }

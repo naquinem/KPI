@@ -64,6 +64,5 @@ Route::get('/overtime/edit/{id}', [OvertimeController::class, 'overtimeEdit']);
 Route::put('/overtime/edit/{id}', [OvertimeController::class, 'overtimeUpdate']);
 Route::delete('/overtime/removed/{id}', [OvertimeController::class, 'overtimeRemoved']);
 
-
 Route::get('/daily', [DailyHitController::class, 'dailyIndex']);
 Route::post('/daily', [DailyHitController::class, 'dailyStore']);

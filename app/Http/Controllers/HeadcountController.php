@@ -6,6 +6,7 @@ use App\Models\Headcount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\HeadcountRequest;
+use App\Http\Resources\HeadcountResource;
 
 class HeadcountController extends Controller
 {
@@ -16,12 +17,12 @@ class HeadcountController extends Controller
     {
         $data = Headcount::all();
         if($data->count() > 0){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
+            return response([
                 'status' => 401,
                 'message' => 'No data found in database',
             ],401);
@@ -49,15 +50,15 @@ class HeadcountController extends Controller
                     'ROUND(total_output / total_headcounts, 2)'
                 ),
             ]);
-            return response()->json([
+            return response([
                 'status' => 200,
-                'info' => $info,
+                'info' => new HeadcountResource($info),
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Error in sending data to database',
-            ], 404);
+            ], 401);
         }
     }
 
@@ -68,15 +69,15 @@ class HeadcountController extends Controller
     {
         $data = Headcount::find($id);
         if($data){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ]);
+            ], 401);
         }
     }
 
@@ -87,15 +88,15 @@ class HeadcountController extends Controller
     {
         $data = Headcount::find($id);
         if($data){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ]);
+            ], 401);
         }
     }
 
@@ -110,15 +111,15 @@ class HeadcountController extends Controller
             $info->update([
                 'total_headcounts' => $data['total_headcounts'],
             ]);
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $info,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Error in sending data to database'
-            ], 404);
+            ], 401);
         }
     }
 
@@ -130,12 +131,12 @@ class HeadcountController extends Controller
         $data = Headcount::find($id);
         if($data) {
             $data->delete();
-            return response()->json([
+            return response([
                 'status' => 200,
                 'message' => 'Successfully removed the data from database',
-            ]);
+            ], 200);
         } else {
-            return response()->json([
+            return response([
                 'status' => 404,
                 'error' => 'Unsuccessfully delete in database',
             ]);

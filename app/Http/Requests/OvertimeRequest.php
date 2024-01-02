@@ -22,6 +22,7 @@ class OvertimeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'workweek' => 'required|integer|max:214748',
             'total_work_hours' => 'required|string|max:255',
             'total_regular_hours' => 'required|string|max:255',
         ];

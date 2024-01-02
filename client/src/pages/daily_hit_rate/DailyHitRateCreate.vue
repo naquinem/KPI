@@ -1,10 +1,10 @@
 <template>
-    <div class="headcount">
+    <div class="daily-hit-rate">
         <div class="form">
             <form @submit.prevent="handleSubmit">
                 <div>
-                    <label for="headcount">Total Headcount</label>
-                    <input v-model="headcount" class="headcount" type="number" />
+                    <label for="workweek">Work Week</label>
+                    <input v-model="workweeks" class="workweek" type="number" />
                 </div>
                 <button type="submit" class="btn btn-primary">Submit Data</button>
             </form>
@@ -18,24 +18,25 @@ export default {
     name: 'HeadcountCreate',
     data() {
         return {
-            headcount: '',
+            workweeks: '',
         }
     },
     methods: {
         async handleSubmit () {
             try{
                 const data = {
-                    total_headcounts: this.headcount,
+                    workweek: this.workweeks,
                 }
-                const response = await axiosClient.post('/headcounts', data);
+                const response = await axiosClient.post('/daily', data);
                 if(response.status === 200) {
                     window.alert('Successfully send data');
-                    this.$router.push('/overtime-create');
+                    this.$router.push('/planning-create');
                 }
             }
             catch (error) {
                 console.log(error.response.data)
             }
+
         }
     }
 }
@@ -54,7 +55,7 @@ export default {
         width: 8rem;
         height: 2rem;
     }
-    .headcount{
+    .daily-hit-rate{
         position: relative;
 
     }

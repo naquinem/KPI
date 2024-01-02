@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('percentage_friday')->nullable();
             $table->string('percentage_saturday')->nullable();
             $table->string('percentage_sunday')->nullable();
-            $tabel->string('total_percentage')->nullable();
+            $table->string('total_percentage')->nullable();
             $table->timestamps();
         });
     }

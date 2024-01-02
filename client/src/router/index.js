@@ -6,6 +6,7 @@ import Register from '../views/Register.vue';
 import Cycletime from '../pages/cycletime/Cycletime.vue';
 import CycletimePercentile from '../pages/cycletime_percentile/CycletimePercentile.vue';
 import DailyHitRate from '../pages/daily_hit_rate/DailyHitRate.vue';
+import DailyHitRateCreate from '../pages/daily_hit_rate/DailyHitRateCreate.vue';
 import ExcessHours from '../pages/excess_hours/ExcessHours.vue';
 import PlanningRequest from '../pages/planning_request/PlanningRequest.vue';
 import RepairOutput from '../pages/repair_output/RepairOutput.vue';
@@ -47,6 +48,11 @@ const router = createRouter({
                 path: '/overtime-create',
                 name: 'overtime-create',
                 component: OvertimeCreate
+            },
+            {
+                path: '/daily-hit',
+                name: 'daily-hit',
+                component: DailyHitRateCreate
             },
             {
                 path: '/about',

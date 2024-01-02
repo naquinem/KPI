@@ -13,15 +13,15 @@ class CycletimeController extends Controller
     {
         $data = Cycletime::all();
         if($data->count() > 0){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ],404);
+            ],401);
         }
     }
 
@@ -89,12 +89,12 @@ class CycletimeController extends Controller
                 'average_saturday' =>DB::raw('ROUND(cycletime_saturday / output_saturday, 2)'),
                 'average_sunday' =>DB::raw('ROUND(cycletime_sunday / output_sunday, 2)'),
             ]);
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $info,
             ],200);
         } else {
-            return response()->json([
+            return response([
                 'status' => 401,
                 'error' => 'Error in sending data to database',
             ], 401);
@@ -108,15 +108,15 @@ class CycletimeController extends Controller
     {
         $data = Cycletime::find($id);
         if($data){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ]);
+            ], 401);
         }
     }
 
@@ -127,15 +127,15 @@ class CycletimeController extends Controller
     {
         $data = Cycletime::find($id);
         if($data){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ]);
+            ], 401);
         }
     }
 
@@ -157,15 +157,15 @@ class CycletimeController extends Controller
                 'cycletime_saturday' => $data['cycletime_saturday'],
                 'cycletime_sunday' => $data['cycletime_sunday'],
             ]);
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $info,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Error in sending data to database'
-            ], 404);
+            ], 401);
         }
     }
 
@@ -177,15 +177,15 @@ class CycletimeController extends Controller
         $data = Cycletime::find($id);
         if($data) {
             $data->delete();
-            return response()->json([
+            return response([
                 'status' => 200,
                 'message' => 'Successfully removed the data from database',
-            ]);
+            ], 200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Unsuccessfully delete in database',
-            ]);
+            ], 401);
         }
     }
 }

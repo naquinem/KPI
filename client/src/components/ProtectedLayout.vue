@@ -7,10 +7,11 @@
                 </div>
                 <div class="nav-links">
                     <ul>
-                        <li><RouterLink to="/cycletime-create">Cycletime</RouterLink></li>
-                        <li><RouterLink to="/headcount-create">Headcount</RouterLink></li>
                         <li><RouterLink to="/planning-create">Planning Request</RouterLink></li>
+                        <li><RouterLink to="/cycletime-create">Cycletime</RouterLink></li>
                         <li><RouterLink to="/overtime-create">Excess Hours</RouterLink></li>
+                        <li><RouterLink to="/daily-hit">Daily Hit Rate</RouterLink></li>
+                        <li><RouterLink to="/headcount-create">Headcount</RouterLink></li>
                     </ul>
                 </div>
                 <div class="users">
@@ -107,14 +108,14 @@ export default {
         align-items: center;
     }
     .nav-links{
-        font-size: large;
+        font-size: medium;
         padding-top: 1rem;
     }
     .nav-links >ul {
         display: flex;
         justify-content: left;
         align-items: center;
-        width: 40rem;
+        width: 50rem;
     }
     .nav-content {
         display: flex;

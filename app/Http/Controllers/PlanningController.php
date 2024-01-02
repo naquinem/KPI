@@ -13,12 +13,12 @@ class PlanningController extends Controller
     {
         $data = Planning::all();
         if($data->count() > 0){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
+            return response([
                 'status' => 404,
                 'error' => 'No data found in database',
             ],404);
@@ -53,12 +53,12 @@ class PlanningController extends Controller
             DB::table('planning_requests')->update(['total_request' => DB::raw('planning_monday+planning_tuesday+planning_wednesday+planning_thursday+planning_friday+planning_saturday+planning_sunday')]);
             DB::table('planning_requests')->update(['total_output' => DB::raw('output_monday+output_tuesday+output_wednesday+output_thursday+output_friday+output_saturday+output_sunday')]);
 
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $info,
             ],200);
         } else {
-            return response()->json([
+            return response([
                 'status' => 401,
                 'error' => 'Error in sending data to database',
             ], 401);
@@ -72,15 +72,15 @@ class PlanningController extends Controller
     {
         $data = Planning::find($id);
         if($data){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ]);
+            ], 401);
         }
     }
 
@@ -91,15 +91,15 @@ class PlanningController extends Controller
     {
         $data = Planning::find($id);
         if($data){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'No data found in database',
-            ]);
+            ], 401);
         }
     }
 
@@ -128,15 +128,15 @@ class PlanningController extends Controller
                 'output_saturday' => $data['output_saturday'],
                 'output_sunday' => $data['output_sunday'],
             ]);
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $info,
             ],200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Error in sending data to database'
-            ], 404);
+            ], 401);
         }
     }
 
@@ -148,15 +148,15 @@ class PlanningController extends Controller
         $data = Planning::find($id);
         if($data) {
             $data->delete();
-            return response()->json([
+            return response([
                 'status' => 200,
                 'message' => 'Successfully removed the data from database',
-            ]);
+            ], 200);
         } else {
-            return response()->json([
-                'status' => 404,
+            return response([
+                'status' => 401,
                 'error' => 'Unsuccessfully delete in database',
-            ]);
+            ], 401);
         }
     }
 }

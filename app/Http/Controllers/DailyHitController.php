@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Daily;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\DailyResource;
 use App\Http\Requests\DailyHitRequest;
 
 class DailyHitController extends Controller
@@ -13,12 +14,12 @@ class DailyHitController extends Controller
     {
         $data = Daily::all();
         if($data->count() > 0){
-            return response()->json([
+            return response([
                 'status' => 200,
                 'info' => $data,
             ],200);
         } else {
-            return response()->json([
+            return response([
                 'status' => 401,
                 'message' => 'No data found in database',
             ],401);
@@ -77,35 +78,35 @@ class DailyHitController extends Controller
 
             ]);
             DB::table('dailies')->update([
-                'percentage_monday' => DB::raw('output_monday / planning_monday'),
-                'percentage_tuesday' => DB::raw('output_tuesday / planning_tuesday'),
-                'percentage_wednesday' => DB::raw('output_wednesday / planning_wednesday'),
-                'percentage_thursday' => DB::raw('output_thursday / planning_thursday'),
-                'percentage_friday' => DB::raw('output_friday / planning_friday'),
-                'percentage_saturday' => DB::raw('output_saturday / planning_saturday'),
-                'percentage_sunday' => DB::raw('output_sunday / planning_sunday'),
+                'percentage_monday' => DB::raw('ROUND(output_monday / planning_monday, 2)'),
+                'percentage_tuesday' => DB::raw('ROUND(output_tuesday / planning_tuesday, 2)'),
+                'percentage_wednesday' => DB::raw('ROUND(output_wednesday / planning_wednesday, 2)'),
+                'percentage_thursday' => DB::raw('ROUND(output_thursday / planning_thursday, 2)'),
+                'percentage_friday' => DB::raw('ROUND(output_friday / planning_friday, 2)'),
+                'percentage_saturday' => DB::raw('ROUND(output_saturday / planning_saturday, 2)'),
+                'percentage_sunday' => DB::raw('ROUND(output_sunday / planning_sunday, 2)'),
             ]);
             DB::table('dailies')->update([
                 'total_percentage' => DB::raw('
-                    (percentage_monday +
+                    ROUND(percentage_monday +
                     percentage_tuesday +
                     percentage_wednesday +
                     percentage_thursday +
                     percentage_friday +
                     percentage_saturday +
-                    percentage_sunday) / 700
+                    percentage_sunday, 2)
                 '),
             ]);
 
-            return response()->json([
+            return response([
                 'status' => 200,
-                'data' => $info
-            ]);
+                'data' => $info,
+            ], 200);
         } else {
-            return response()->json([
+            return response([
                 'status' => 401,
                 'error' => 'Error in sending data to database'
-            ]);
+            ], 401);
         }
     }
 }
